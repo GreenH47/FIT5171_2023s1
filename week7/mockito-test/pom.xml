@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mockito-example</groupId>
+  <artifactId>mockito-test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  
+  <properties>
+	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	   <maven.compiler.source>11</maven.compiler.source>
+	   <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+	   <junit.jupiter.version>5.9.0</junit.jupiter.version>
+	   <junit.jupiter.params.version>5.9.0</junit.jupiter.params.version>
+   </properties>
+   
+   <dependencies>
+		<dependency>
+		   <!-- JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage -->
+	        <groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-engine</artifactId>
+	        <version>${junit.jupiter.version}</version>
+	        <scope>test</scope>
+	    </dependency>
+	    <dependency>
+    		<groupId>org.junit.jupiter</groupId>
+	    	<artifactId>junit-jupiter-params</artifactId>
+	    	<version>${junit.jupiter.params.version}</version>
+	    	<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.junit-pioneer</groupId>
+		    <artifactId>junit-pioneer</artifactId>
+		    <version>1.7.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-all</artifactId>
+		    <version>1.10.19</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.6.0</version>
+        </dependency>
+	   <dependency>
+		   <groupId>org.junit.jupiter</groupId>
+		   <artifactId>junit-jupiter-api</artifactId>
+		   <version>5.9.0</version>
+		   <scope>test</scope>
+	   </dependency>
+
+   </dependencies>
+</project>
