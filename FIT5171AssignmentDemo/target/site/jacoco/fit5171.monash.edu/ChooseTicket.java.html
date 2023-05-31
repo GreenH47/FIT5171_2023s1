@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChooseTicket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FIT5171AssignmentDemo</a> &gt; <a href="index.source.html" class="el_package">fit5171.monash.edu</a> &gt; <span class="el_source">ChooseTicket.java</span></div><h1>ChooseTicket.java</h1><pre class="source lang-java linenums">package fit5171.monash.edu;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+<span class="nc" id="L6">public class ChooseTicket{</span>
+   
+<span class="nc" id="L8">	BuyTicket buyTicket = new BuyTicket();</span>
+    
+<span class="nc" id="L10">	Scanner in = new Scanner(System.in);</span>
+
+    public void chooseTicket(String city1, String city2) throws Exception
+    {
+<span class="nc" id="L14">    	int counter = 1;</span>
+<span class="nc" id="L15">    	int idFirst = 0;</span>
+<span class="nc" id="L16">        int idSecond = 0;</span>
+    	
+<span class="nc" id="L18">        Flight flight = new Flight();</span>
+
+        //search for direct flight from city1 to city2
+        
+<span class="nc" id="L22">        flight = FlightCollection.getFlightInfo(city1, city2);</span>
+        
+        
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if(flight != null) {</span>
+        	
+<span class="nc" id="L27">        	TicketCollection.getAllTickets();</span>
+       
+<span class="nc" id="L29">	        System.out.println(&quot;\nEnter ID of ticket you want to choose:&quot;);</span>
+	        
+<span class="nc" id="L31">	        int ticket_id = in.nextInt();</span>
+	        
+	        //validate ticker here
+	        
+	        //buy ticket here
+<span class="nc" id="L36">	        buyTicket.buyTicket(ticket_id);</span>
+<span class="nc" id="L37">        }</span>
+        else
+            //in case there is no direct ticket from city1 to city2
+        {
+        	//SELECT a flight where depart_to = city2
+        	
+<span class="nc" id="L43">        	Flight depart_to = FlightCollection.getFlightInfo(city2);</span>
+        	
+        	//and search for city with depart_from as connector city
+
+<span class="nc" id="L47">        	String connectCity = depart_to.getDepartFrom();</span>
+        	
+        	//SELECT * from flight where depart_to = '&quot; + connectCity + &quot;' and depart_from = '&quot; + city1+&quot;'&quot;
+        	
+<span class="nc" id="L51">        	Flight flightConnectingTwoCities = FlightCollection.getFlightInfo(city1, connectCity);</span>
+        	
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        	if(flightConnectingTwoCities != null){</span>
+        		
+<span class="nc" id="L55">        		System.out.println(&quot;There is special way to go there. And it is transfer way, like above. Way №&quot; + counter);</span>
+         
+<span class="nc" id="L57">        		idFirst = depart_to.getFlightID();</span>
+        	
+<span class="nc" id="L59">        		idSecond = flightConnectingTwoCities.getFlightID();</span>
+        	
+          
+            }
+        	
+<span class="nc" id="L64">        	counter++;</span>
+            
+<span class="nc" id="L66">        	buyTicket.buyTicket(idFirst, idSecond); //pass two tickets and buy them</span>
+            
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        	if(counter == 1)</span>
+            {
+<span class="nc" id="L70">                System.out.println(&quot;There is no possible variants.&quot;);</span>
+            }
+<span class="nc" id="L72">            return;</span>
+        }
+
+<span class="nc" id="L75">    }</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Passenger.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FIT5171AssignmentDemo</a> &gt; <a href="index.source.html" class="el_package">fit5171.monash.edu</a> &gt; <span class="el_source">Passenger.java</span></div><h1>Passenger.java</h1><pre class="source lang-java linenums">package fit5171.monash.edu;
+
+import java.util.regex.PatternSyntaxException;
+
+public class Passenger extends Person
+{
+    private String email;
+    private String phoneNumber;
+    private String cardNumber;
+    private int securityCode;
+    private String passport;
+
+<span class="fc" id="L13">    public Passenger(){}</span>
+
+    public Passenger(String firstName, String secondName, int age, String gender,String email, String phoneNumber, String passport, String cardNumber,int securityCode)
+    {
+<span class="nc" id="L17">        super(firstName, secondName, age, gender);</span>
+<span class="nc" id="L18">        this.securityCode=securityCode;</span>
+<span class="nc" id="L19">        this.cardNumber=cardNumber;</span>
+<span class="nc" id="L20">        this.passport=passport;</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (validateEmail(email))</span>
+<span class="nc" id="L22">            this.email = email;</span>
+        else
+<span class="nc" id="L24">            throw new PatternSyntaxException(&quot;Email format error&quot;,&quot;&quot;,-1);</span>
+<span class="nc" id="L25">        this.phoneNumber=phoneNumber;</span>
+<span class="nc" id="L26">    }</span>
+
+    public String getEmail() {
+<span class="fc" id="L29">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (validateEmail(email))</span>
+<span class="fc" id="L34">            this.email = email;</span>
+        else
+<span class="fc" id="L36">            throw new PatternSyntaxException(&quot;Email format error&quot;,&quot;&quot;,-1);</span>
+<span class="fc" id="L37">    }</span>
+
+    public String getFirstName() {
+<span class="nc" id="L40">        return super.getFirstName();</span>
+    }
+
+    public String getSecondName() {
+<span class="nc" id="L44">        return super.getSecondName();</span>
+    }
+
+    public void setSecondName(String secondName) {
+<span class="fc" id="L48">        super.setSecondName(secondName);</span>
+<span class="fc" id="L49">    }</span>
+
+    public void setFirstName(String firstName) {
+<span class="fc" id="L52">        super.setFirstName(firstName);</span>
+<span class="fc" id="L53">    }</span>
+
+    public String getPassport() {
+<span class="nc" id="L56">        return passport;</span>
+    }
+
+    public void setGender(String gender) {
+<span class="fc" id="L60">        super.setGender(gender);</span>
+<span class="fc" id="L61">    }</span>
+
+    public String getPhoneNumber() {
+<span class="nc" id="L64">        return phoneNumber;</span>
+    }
+
+    public int getSecurityCode() {
+<span class="nc" id="L68">        return securityCode;</span>
+    }
+
+    public String getCardNumber() {
+<span class="nc" id="L72">        return cardNumber;</span>
+    }
+
+    public void setCardNumber(String cardNumber) {
+<span class="fc" id="L76">        this.cardNumber = cardNumber;</span>
+<span class="fc" id="L77">    }</span>
+
+    public void setSecurityCode(int securityCode) {
+<span class="fc" id="L80">        this.securityCode = securityCode;</span>
+<span class="fc" id="L81">    }</span>
+
+    @Override
+    public void setAge(int age) {
+<span class="fc" id="L85">        super.setAge(age);</span>
+<span class="fc" id="L86">    }</span>
+
+    public void setPassport(String passport) {
+<span class="fc" id="L89">        this.passport = passport;</span>
+<span class="fc" id="L90">    }</span>
+
+    @Override
+    public String getGender() {
+<span class="nc" id="L94">        return super.getGender();</span>
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+<span class="fc" id="L98">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L99">    }</span>
+
+    @Override
+    public int getAge() {
+<span class="fc" id="L103">        return super.getAge();</span>
+    }
+
+    @Override
+    public String toString()
+    {
+<span class="nc" id="L109">        return &quot;Passenger{&quot; + &quot; Fullname= &quot;+ super.getFirstName()+&quot; &quot;+super.getSecondName()+</span>
+                &quot; ,email='&quot; + email + '\'' +
+                &quot;, phoneNumber='&quot; + phoneNumber + '\'' +
+                &quot;, passport='&quot; + passport +
+                '}';
+    }
+
+    public boolean validateEmail(String email) {
+//        return email.matches(&quot;\\w+@\\w+\\.[a-z]+&quot;);
+<span class="fc" id="L118">        return email.matches(&quot;\\w+\\@[A-Za-z0-9]+\\.[A-Za-z]+&quot;);</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

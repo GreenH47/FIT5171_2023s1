@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: fit5171.monash.edu.BuyTicketTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.616 s - in fit5171.monash.edu.BuyTicketTest

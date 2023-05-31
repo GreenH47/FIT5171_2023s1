@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuyTicket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FIT5171AssignmentDemo</a> &gt; <a href="index.source.html" class="el_package">fit5171.monash.edu</a> &gt; <span class="el_source">BuyTicket.java</span></div><h1>BuyTicket.java</h1><pre class="source lang-java linenums">package fit5171.monash.edu;
+
+import java.sql.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+public class BuyTicket &lt;T&gt;
+{
+<span class="fc" id="L11">    Passenger passenger = new Passenger();</span>
+<span class="fc" id="L12">    Ticket ticket = new Ticket();</span>
+<span class="fc" id="L13">    Flight flight = new Flight();</span>
+<span class="fc" id="L14">    Scanner in = new Scanner(System.in);</span>
+
+    public BuyTicket()
+<span class="fc" id="L17">    {</span>
+<span class="fc" id="L18">         passenger = new Passenger();</span>
+<span class="fc" id="L19">         ticket = new Ticket();</span>
+<span class="fc" id="L20">         flight = new Flight();</span>
+<span class="fc" id="L21">    }</span>
+
+    public void showTicket()
+    {
+        try
+        {
+<span class="nc" id="L27">            System.out.println(&quot;You have bought a ticket for flight &quot; + ticket.flight.getDepartFrom() + &quot; - &quot; + ticket.flight.getDepartTo() + &quot;\n\nDetails:&quot;);</span>
+<span class="nc" id="L28">            System.out.println(this.ticket.toString());</span>
+        }
+<span class="nc" id="L30">        catch (NullPointerException e)</span>
+        {
+<span class="nc" id="L32">            return;</span>
+<span class="nc" id="L33">        }</span>
+<span class="nc" id="L34">    }</span>
+
+    public String sumOfNumbersFromSystemIn() {
+<span class="nc" id="L37">        String firstSummand = in.nextLine();</span>
+
+<span class="nc" id="L39">        String secondSummand = in.nextLine();</span>
+<span class="nc" id="L40">        return firstSummand + secondSummand;</span>
+    }
+
+
+    public void buyTicket(int ticket_id) throws Exception
+        //method for buying one ticket with direct flight
+    {
+<span class="fc" id="L47">        int flight_id = 0;</span>
+
+        //select ticket where ticket_id=&quot;+ticket_id&quot;
+<span class="fc" id="L50">        Ticket validTicket = TicketCollection.getTicketInfo(ticket_id);</span>
+       
+        //if there is a valid ticket id was input then we buy it, otherwise show message
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if(validTicket == null)</span>
+        {
+<span class="nc" id="L55">            System.out.println(&quot;This ticket does not exist.&quot;);</span>
+<span class="nc" id="L56">            return;</span>
+        }
+        else{
+        	//select flight_id from ticket where ticket_id=&quot; + ticket_id
+        
+<span class="fc" id="L61">            flight_id = validTicket.getFlight().getFlightID();</span>
+            
+            try
+            {
+<span class="fc" id="L65">                System.out.println(&quot;Enter your First Name: &quot;);</span>
+<span class="fc" id="L66">                String firstName = &quot;&quot;;</span>
+<span class="fc" id="L67">                passenger.setFirstName(firstName);</span>
+                
+                
+<span class="fc" id="L70">                System.out.println(&quot;Enter your Second name:&quot;);</span>
+<span class="fc" id="L71">                String secondName = &quot;&quot;;</span>
+<span class="fc" id="L72">                passenger.setSecondName(secondName); //setting passengers info</span>
+
+<span class="fc" id="L74">                System.out.println(&quot;Enter your age:&quot;);</span>
+<span class="fc" id="L75">                Integer age = 0;</span>
+//                in.nextLine();
+<span class="fc" id="L77">                passenger.setAge(age);</span>
+
+<span class="fc" id="L79">                System.out.println(&quot;Enter your gender: &quot;);</span>
+<span class="fc" id="L80">                String gender = &quot;&quot;;</span>
+<span class="fc" id="L81">                passenger.setGender(gender);</span>
+
+<span class="fc" id="L83">                System.out.println(&quot;Enter your e-mail address&quot;);</span>
+<span class="fc" id="L84">                String email = in.nextLine();//enter syntax error email address</span>
+<span class="fc" id="L85">                passenger.setEmail(email);</span>
+
+<span class="fc" id="L87">                System.out.println(&quot;Enter your phone number (+7):&quot;);</span>
+<span class="fc" id="L88">                String phoneNumber = &quot;&quot;;</span>
+<span class="fc" id="L89">                passenger.setPhoneNumber(phoneNumber);</span>
+
+<span class="fc" id="L91">                System.out.println(&quot;Enter your passport number:&quot;);</span>
+<span class="fc" id="L92">                String passportNumber = &quot;&quot;;</span>
+<span class="fc" id="L93">                passenger.setPassport(passportNumber);</span>
+
+<span class="fc" id="L95">                System.out.println(&quot;Do you want to purchase?\n 1-YES 0-NO&quot;);</span>
+<span class="fc" id="L96">                int purch = in.nextInt();</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">                if (purch == 0)</span>
+                {
+<span class="nc" id="L99">                    return;</span>
+                } else
+                {
+                	
+<span class="fc" id="L103">	                   flight = FlightCollection.getFlightInfo(flight_id);</span>
+	                	
+<span class="fc" id="L105">	                	int airplane_id = flight.getAirplane().getAirplaneID();</span>
+	                	
+<span class="fc" id="L107">	                    Airplane airplane = Airplane.getAirPlaneInfo(airplane_id);</span>
+	                 
+<span class="fc" id="L109">	                    ticket = TicketCollection.getTicketInfo(ticket_id);</span>
+	                    
+<span class="fc" id="L111">	                	ticket.setPassenger(passenger);</span>
+<span class="fc" id="L112">	                    ticket.setTicket_id(ticket_id);</span>
+<span class="fc" id="L113">	                    ticket.setFlight(flight);</span>
+<span class="fc" id="L114">	                    ticket.setPrice(ticket.getPrice());</span>
+<span class="fc" id="L115">	                    ticket.setClassVip(ticket.getClassVip());</span>
+<span class="fc" id="L116">	                    ticket.setTicketStatus(true);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">	                    if (ticket.getClassVip() == true)</span>
+	                    {
+<span class="nc" id="L119">	                    	airplane.setBusinessSitsNumber(airplane.getBusinessSitsNumber() - 1);</span>
+	                    } else
+	                    {
+<span class="fc" id="L122">	                    	airplane.setEconomySitsNumber(airplane.getEconomySitsNumber() - 1);</span>
+	                    }
+	                      
+                 }
+<span class="fc" id="L126">                   System.out.println(&quot;Your bill: &quot; + ticket.getPrice() + &quot;\n&quot;);</span>
+
+<span class="fc" id="L128">                    System.out.println(&quot;Enter your card number:&quot;);</span>
+<span class="fc" id="L129">                    String cardNumber = &quot;&quot;;</span>
+<span class="fc" id="L130">                    passenger.setCardNumber(cardNumber);</span>
+
+<span class="fc" id="L132">                    System.out.println(&quot;Enter your security code:&quot;);</span>
+<span class="fc" id="L133">                    Integer securityCode = 0;</span>
+<span class="fc" id="L134">                    passenger.setSecurityCode(securityCode);</span>
+
+            
+<span class="fc" id="L137">            } catch (PatternSyntaxException patternException)</span>
+            {
+<span class="fc" id="L139">                patternException.printStackTrace();</span>
+<span class="fc" id="L140">            }</span>
+        }
+<span class="fc" id="L142">    }</span>
+    
+	@SuppressWarnings(&quot;null&quot;)
+	public void buyTicket(int ticket_id_first, int ticket_id_second) throws Exception{
+		 //method for buying two tickets with transfer flight
+<span class="nc" id="L147">        int flight_id_first = 0;</span>
+        
+<span class="nc" id="L149">        int flight_id_second = 0;</span>
+
+   
+<span class="nc" id="L152">        System.out.println(ticket_id_first + &quot; &quot; + ticket_id_second);</span>
+        
+<span class="nc" id="L154">        Ticket validTicketfirst = TicketCollection.getTicketInfo(ticket_id_first);</span>
+        
+<span class="nc" id="L156">        Ticket validTicketSecond = TicketCollection.getTicketInfo(ticket_id_first);</span>
+        
+      
+<span class="nc" id="L159">        System.out.println(&quot;Processing...&quot;);</span>
+        
+        //if there is a valid ticket id was input then we buy it, otherwise show message
+        
+<span class="nc bnc" id="L163" title="All 4 branches missed.">         if(validTicketfirst!=null || validTicketSecond!=null)</span>
+        {
+<span class="nc" id="L165">            System.out.println(&quot;This ticket does not exist.&quot;);</span>
+<span class="nc" id="L166">            return;</span>
+        }
+
+        else
+        {
+<span class="nc" id="L171">        	flight_id_first = validTicketfirst.getFlight().getFlightID();</span>
+        	
+<span class="nc" id="L173">        	flight_id_second = validTicketfirst.getFlight().getFlightID();</span>
+        	
+          
+            try
+            {
+<span class="nc" id="L178">            	System.out.println(&quot;Enter your First Name: &quot;);</span>
+<span class="nc" id="L179">                String firstName = &quot;&quot;;</span>
+<span class="nc" id="L180">                passenger.setFirstName(firstName);</span>
+                
+                
+<span class="nc" id="L183">                System.out.println(&quot;Enter your Second name:&quot;);</span>
+<span class="nc" id="L184">                String secondName = &quot;&quot;;</span>
+<span class="nc" id="L185">                passenger.setSecondName(secondName); //setting passengers info</span>
+
+<span class="nc" id="L187">                System.out.println(&quot;Enter your age:&quot;);</span>
+<span class="nc" id="L188">                Integer age = 0;</span>
+<span class="nc" id="L189">                in.nextLine();</span>
+<span class="nc" id="L190">                passenger.setAge(age);</span>
+
+<span class="nc" id="L192">                System.out.println(&quot;Enter your gender: &quot;);</span>
+<span class="nc" id="L193">                String gender = &quot;&quot;;</span>
+                //passenger.setGender(gender));
+
+<span class="nc" id="L196">                System.out.println(&quot;Enter your e-mail address&quot;);</span>
+<span class="nc" id="L197">                String email = &quot;&quot;;</span>
+<span class="nc" id="L198">                passenger.setEmail(email);</span>
+
+<span class="nc" id="L200">                System.out.println(&quot;Enter your phone number (+7):&quot;);</span>
+<span class="nc" id="L201">                String phoneNumber = &quot;&quot;;</span>
+<span class="nc" id="L202">                passenger.setPhoneNumber(phoneNumber);</span>
+
+<span class="nc" id="L204">                System.out.println(&quot;Enter your passport number:&quot;);</span>
+<span class="nc" id="L205">                String passportNumber = &quot;&quot;;</span>
+<span class="nc" id="L206">                passenger.setPassport(passportNumber);</span>
+                
+<span class="nc" id="L208">                System.out.println(&quot;Do you want to purchase?\n 1-YES 0-NO&quot;);</span>
+<span class="nc" id="L209">                int purch = in.nextInt();</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                if (purch == 0)</span>
+                {
+<span class="nc" id="L212">                    return;</span>
+                } 
+                else
+                {
+                    
+                  //  &quot;select * from flight, airplane where flight_id=&quot; + flight_id_first + &quot; and flight.airplane_id=airplane.airplane_id&quot;);
+<span class="nc" id="L218">                    Flight flight_first = FlightCollection.getFlightInfo(flight_id_first);</span>
+                	
+<span class="nc" id="L220">                	int airplane_id_first = flight_first.getAirplane().getAirplaneID();</span>
+                	
+<span class="nc" id="L222">                    Airplane airplane_first = Airplane.getAirPlaneInfo(airplane_id_first);</span>
+                 
+<span class="nc" id="L224">                    Flight flight_second = FlightCollection.getFlightInfo(flight_id_second);</span>
+                	
+<span class="nc" id="L226">                	int airplane_id_second = flight_second.getAirplane().getAirplaneID();</span>
+                	
+<span class="nc" id="L228">                    Airplane airpairplane_second  = Airplane.getAirPlaneInfo(airplane_id_second);</span>
+                 
+<span class="nc" id="L230">                    Ticket ticket_first = TicketCollection.getTicketInfo(ticket_id_first);</span>
+                    
+<span class="nc" id="L232">                    Ticket ticket_second = TicketCollection.getTicketInfo(ticket_id_second);</span>
+    	             
+<span class="nc" id="L234">                    ticket_first.setPassenger(passenger);</span>
+<span class="nc" id="L235">                    ticket_first.setTicket_id(ticket_id_first);</span>
+<span class="nc" id="L236">                    ticket_first.setFlight(flight_first);</span>
+<span class="nc" id="L237">                    ticket_first.setPrice(ticket_first.getPrice());</span>
+<span class="nc" id="L238">                    ticket_first.setClassVip(ticket_first.getClassVip());</span>
+<span class="nc" id="L239">                    ticket_first.setTicketStatus(true);</span>
+                    
+<span class="nc bnc" id="L241" title="All 2 branches missed.">                    if (ticket_first.getClassVip() == true)</span>
+                    {
+<span class="nc" id="L243">                    	airplane_first.setBusinessSitsNumber(airplane_first.getBusinessSitsNumber() - 1);</span>
+                    } else
+                    {
+<span class="nc" id="L246">                    	airplane_first.setEconomySitsNumber(airplane_first.getEconomySitsNumber() - 1);</span>
+                    }
+                    
+<span class="nc" id="L249">                    System.out.println(&quot;--*-*-&quot;);</span>
+                    
+<span class="nc" id="L251">                    ticket_second.setPassenger(passenger);</span>
+<span class="nc" id="L252">                    ticket_second.setTicket_id(ticket_id_second);</span>
+<span class="nc" id="L253">                    ticket_second.setFlight(flight_first);</span>
+<span class="nc" id="L254">                    ticket_second.setPrice(ticket_second.getPrice());</span>
+<span class="nc" id="L255">                    ticket_second.setClassVip(ticket_second.getClassVip());</span>
+<span class="nc" id="L256">                    ticket_second.setTicketStatus(true);</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">                    if (ticket_second.getClassVip() == true)</span>
+                    {
+<span class="nc" id="L259">                    	airpairplane_second.setBusinessSitsNumber(airpairplane_second.getBusinessSitsNumber() - 1);</span>
+                    } else
+                    {
+<span class="nc" id="L262">                    	airpairplane_second.setEconomySitsNumber(airpairplane_second.getEconomySitsNumber() - 1);</span>
+                    }
+                    
+<span class="nc" id="L265">                    System.out.println(&quot;--*-*-&quot;); </span>
+                   
+<span class="nc" id="L267">                    ticket.setPrice(ticket_first.getPrice() + ticket_second.getPrice());</span>
+                    
+<span class="nc" id="L269">                    System.out.println(&quot;Your bill: &quot; + ticket.getPrice() + &quot;\n&quot;);</span>
+                    
+<span class="nc" id="L271">                    System.out.println(&quot;Enter your card number:&quot;);</span>
+                   
+<span class="nc" id="L273">                    String cardNumber = &quot;&quot;;</span>
+<span class="nc" id="L274">                    passenger.setCardNumber(cardNumber);</span>
+
+<span class="nc" id="L276">                    System.out.println(&quot;Enter your security code:&quot;);</span>
+<span class="nc" id="L277">                    Integer securityCode = 0;</span>
+<span class="nc" id="L278">                    passenger.setSecurityCode(securityCode);</span>
+
+                }
+<span class="nc" id="L281">            } catch (PatternSyntaxException patternException)</span>
+            {
+<span class="nc" id="L283">                patternException.printStackTrace();</span>
+<span class="nc" id="L284">            }</span>
+        }
+
+<span class="nc" id="L287">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

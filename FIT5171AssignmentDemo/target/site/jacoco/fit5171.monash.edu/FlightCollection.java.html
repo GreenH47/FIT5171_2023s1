@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FlightCollection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FIT5171AssignmentDemo</a> &gt; <a href="index.source.html" class="el_package">fit5171.monash.edu</a> &gt; <span class="el_source">FlightCollection.java</span></div><h1>FlightCollection.java</h1><pre class="source lang-java linenums">package fit5171.monash.edu;
+
+import java.util.ArrayList;
+
+<span class="nc" id="L5">public class FlightCollection {</span>
+	
+	public static ArrayList&lt;Flight&gt; flights;
+
+	public static ArrayList&lt;Flight&gt; getFlights() {
+<span class="nc" id="L10">		return flights;</span>
+	}
+
+	public static void addFlights(ArrayList&lt;Flight&gt; flights) {
+<span class="nc" id="L14">		FlightCollection.flights.addAll(flights);</span>
+<span class="nc" id="L15">	}</span>
+	
+	public static Flight getFlightInfo(String city1, String city2) {
+    	//display the flights where there is a direct flight from city 1 to city2
+<span class="nc" id="L19">    	return null;</span>
+    }
+    
+    public static Flight getFlightInfo(String city) {
+    	//SELECT a flight where depart_to = city
+<span class="nc" id="L24">    	return null;</span>
+
+    }
+    public static Flight getFlightInfo(int flight_id) {
+    	//SELECT a flight with a particular flight id
+<span class="fc" id="L29">    	return null;</span>
+
+    }
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

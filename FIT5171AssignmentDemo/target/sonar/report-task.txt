@@ -1,0 +1,6 @@
+projectKey=FIT5171AssignmentDemo
+serverUrl=http://localhost:9000
+serverVersion=9.6.1.59531
+dashboardUrl=http://localhost:9000/dashboard?id=FIT5171AssignmentDemo
+ceTaskId=AYN6rmDbnRHR1kuZpAcf
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYN6rmDbnRHR1kuZpAcf

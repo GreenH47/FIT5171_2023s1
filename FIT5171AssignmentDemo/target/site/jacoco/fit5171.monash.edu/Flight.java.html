@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Flight.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FIT5171AssignmentDemo</a> &gt; <a href="index.source.html" class="el_package">fit5171.monash.edu</a> &gt; <span class="el_source">Flight.java</span></div><h1>Flight.java</h1><pre class="source lang-java linenums">package fit5171.monash.edu;
+
+import java.sql.Timestamp;
+import java.util.Calendar;
+
+public class Flight {
+    private int flightID;
+    private String departTo;
+    private String departFrom;
+    private String code;
+    private String company;
+    private Timestamp dateFrom;// 起飞前两小时，不可以购买
+    private Timestamp dateTo;
+    Airplane airplane;
+    
+<span class="fc" id="L16">    public Flight(){}</span>
+
+    public Flight(int flight_id, String departTo, String departFrom, String code, String company, Timestamp dateFrom,Timestamp dateTo, Airplane airplane)
+<span class="fc" id="L19">    {</span>
+<span class="fc" id="L20">            this.flightID=flight_id;</span>
+<span class="fc" id="L21">            this.departTo = departTo;</span>
+<span class="fc" id="L22">            this.departFrom = departFrom;</span>
+<span class="fc" id="L23">            this.code = code;</span>
+<span class="fc" id="L24">            this.company = company;</span>
+<span class="fc" id="L25">            this.airplane = airplane;</span>
+<span class="fc" id="L26">            this.dateTo = dateTo;</span>
+<span class="fc" id="L27">            this.dateFrom = dateFrom;</span>
+<span class="fc" id="L28">    }</span>
+
+    public int getFlightID() {
+<span class="fc" id="L31">        return flightID;</span>
+    }
+
+    public void setFlightID(int flightid) {
+<span class="nc" id="L35">        this.flightID = flightid;</span>
+<span class="nc" id="L36">    }</span>
+
+    public String getDepartTo() {
+<span class="nc" id="L39">        return departTo;</span>
+    }
+
+    public void setDepartTo(String departTo) {
+<span class="nc" id="L43">        this.departTo = departTo;</span>
+<span class="nc" id="L44">    }</span>
+
+    public String getDepartFrom() {
+<span class="nc" id="L47">        return departFrom;</span>
+    }
+
+    public void setDepartFrom(String departFrom) {
+<span class="nc" id="L51">        this.departFrom = departFrom;</span>
+<span class="nc" id="L52">    }</span>
+
+    public String getCode() {
+<span class="nc" id="L55">        return code;</span>
+    }
+
+    public void setCode(String code) {
+<span class="nc" id="L59">        this.code = code;</span>
+<span class="nc" id="L60">    }</span>
+
+    public String getCompany() {
+<span class="nc" id="L63">        return company;</span>
+    }
+
+    public void setCompany(String company) {
+<span class="nc" id="L67">        this.company = company;</span>
+<span class="nc" id="L68">    }</span>
+
+    public Timestamp getDateFrom() {
+<span class="nc" id="L71">        return dateFrom;</span>
+    }
+
+    public void setDateFrom(Timestamp dateFrom) {
+<span class="nc" id="L75">        this.dateFrom = dateFrom;</span>
+<span class="nc" id="L76">    }</span>
+
+    public Timestamp getDateTo() {
+<span class="nc" id="L79">        return dateTo;</span>
+    }
+
+    public void setDateTo(Timestamp dateTo) {
+<span class="nc" id="L83">        this.dateTo = dateTo;</span>
+<span class="nc" id="L84">    }</span>
+
+    public void setAirplane(Airplane airplane) {
+<span class="nc" id="L87">        this.airplane = airplane;</span>
+<span class="nc" id="L88">    }</span>
+
+    public Airplane getAirplane() {
+<span class="fc" id="L91">        return airplane;</span>
+    }
+
+    public String toString()
+    {
+<span class="nc" id="L96">            return &quot;Flight{&quot; + airplane.toString() +</span>
+<span class="nc" id="L97">                    &quot;, date to=&quot; +  getDateTo() + &quot;, &quot; + '\'' +</span>
+<span class="nc" id="L98">                    &quot;, date from='&quot; + getDateFrom() + '\'' +</span>
+<span class="nc" id="L99">                    &quot;, depart from='&quot; + getDepartFrom() + '\'' +</span>
+<span class="nc" id="L100">                    &quot;, depart to='&quot; + getDepartTo() + '\'' +</span>
+<span class="nc" id="L101">                    &quot;, code=&quot; + getCode() + '\'' +</span>
+<span class="nc" id="L102">                    &quot;, company=&quot; + getCompany() + '\'' +</span>
+<span class="nc" id="L103">                    &quot;, code=&quot; + getCode() + '\'' +</span>
+                    '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
